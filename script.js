@@ -24,11 +24,40 @@ function whoWins(playerSel, computerSel) {
 //Plays a round. Receives the player selection and the computer selection.
 function playRound (playerSelection, computerSelection) {
     const result = whoWins(playerSelection, computerSelection);
-    if (result == 1)
+    if (result == 1) {
         console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
-    else if (result == 0)
+        return 1;
+    }
+    else if (result == 0) {
         console.log(`You loose! ${computerSelection} beats ${playerSelection}!`);
-    else if (result == -1) 
-        console.log("Looks like it's a tie!");
+        return 0;
+    }
+    else if (result == -1) {
+        console.log("Looks like it's a tie! Try again");
+        return -1;
+    }
 }
 
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        const playerChoice = prompt("What's your choice?");
+        const computerChoice = getComputerChoice();
+        let playResult = parseInt(playRound(playerChoice, computerChoice));
+        switch(playResult) {
+            case 1:
+                playerScore++;
+                break;
+            case 0:
+                computerScore++;
+                break;
+            default:
+                i--;
+        }
+    }
+    if (playerScore > computerScore) 
+        console.log(`Player Wins! ${playerScore} - ${computerScore}`);
+    else 
+        console.log(`Computer Wins! ${playerScore} - ${computerScore}`);
+}
