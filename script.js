@@ -62,8 +62,9 @@ function game() {
         console.log(`Computer Wins! ${playerScore} - ${computerScore}`);
 }
 
-const buttons = document.querySelectorAll("button");
-buttons.forEach(button => button.addEventListener('click', function(e) {
+
+
+function makePlay(e) {
     switch(e.target.className) {
         case 'rock':
             playRound('Rock', getComputerChoice());
@@ -77,4 +78,7 @@ buttons.forEach(button => button.addEventListener('click', function(e) {
         default:
             return
     }
-}));
+}
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => button.addEventListener('click', makePlay));
