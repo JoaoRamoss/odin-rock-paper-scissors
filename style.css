@@ -1,8 +1,12 @@
+html {
+    font-family: 'roboto', Arial, Helvetica, sans-serif;
+}
+
 body {
     display: flex;
     flex: 1;
     flex-direction: column;
-    background-color: #242F78 ;
+    background-color: #1F2937 ;
     justify-content: center;
 }
 
@@ -10,9 +14,62 @@ h1 {
     display: flex;
     justify-content: center;
     text-align: center;
-    background-color: goldenrod;
+    background-color: #3882f6;
     border-radius: 10px;
-    padding: 10px 35px;
+    padding: 10px 200px;
     margin: 0 auto;
+    font-size: 60px;
+    color: #E1D9D1;
 
+}
+
+.scoreIDcontainer {
+    justify-content: center;
+    display: Flex;
+    gap: 300px;
+    margin-top: 40px;
+}
+
+.scoreIDcontainer span {
+    font-size: 40px;
+    color: #E1D9D1;
+    font-weight: 300;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 300;
+    color: #E1D9D1;
+    letter-spacing: 100px;
+    margin-top: 30px;
+    margin-left: 80px;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    gap: 200px;
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 40px;
+    background-color: #3882f6;
+    border-radius: 15px;
+    text-align: center;
+    border: none;
+    color: #E1D9D1;
+    cursor: pointer;
+}
+
+.whoWins{
+    margin-top: 70px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 300;
+    color: #E1D9D1;
 }
