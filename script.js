@@ -24,16 +24,17 @@ function whoWins(playerSel, computerSel) {
 //Plays a round. Receives the player selection and the computer selection.
 function playRound (playerSelection, computerSelection) {
     const result = whoWins(playerSelection, computerSelection);
+    const winner = document.querySelector('.whoWins');
     if (result == 1) {
-        console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
+        winner.textContent = `You win! ${playerSelection} beats ${computerSelection}!`;
         return 1;
     }
     else if (result == 0) {
-        console.log(`You loose! ${computerSelection} beats ${playerSelection}!`);
+        winner.textContent = `You loose! ${computerSelection} beats ${playerSelection}!`;
         return 0;
     }
     else if (result == -1) {
-        console.log("Looks like it's a tie! Try again");
+        winner.textContent = "Looks like it's a tie! Try again";
         return -1;
     }
 }
@@ -66,7 +67,15 @@ let playerScore = 0, computerScore = 0;
 
 function updateScore() {
     const score = document.querySelector('.score');
-    score.textContent = `${computerScore} - ${playerScore}`;
+    score.textContent = `${playerScore} - ${computerScore}`;
+}
+
+function announceWinner() {
+    const winner = document.querySelector('.whoWins');
+    if (playerScore > computerScore) 
+        winner.textContent = `Game Over! Player Wins!`;
+    else 
+        winner.textContent = `Game over! Computer Wins!`;
 }
 
 //This processes the click of a button, it will be used to also manage the game score.
@@ -98,6 +107,7 @@ function makePlay(e) {
     updateScore();
     if (computerScore === 5 || playerScore === 5) {
         buttons.forEach(button => button.removeEventListener('click', makePlay));
+        announceWinner();
     }
 }
 
