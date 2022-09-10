@@ -61,3 +61,20 @@ function game() {
     else 
         console.log(`Computer Wins! ${playerScore} - ${computerScore}`);
 }
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => button.addEventListener('click', function(e) {
+    switch(e.target.className) {
+        case 'rock':
+            playRound('Rock', getComputerChoice());
+            break;
+        case 'paper':
+            playRound('Paper', getComputerChoice());
+            break;
+        case 'scissors':
+            playRound('Scissors', getComputerChoice());
+            break;
+        default:
+            return
+    }
+}));
