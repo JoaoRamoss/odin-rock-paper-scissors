@@ -38,45 +38,66 @@ function playRound (playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        const playerChoice = prompt("What's your choice?");
-        const computerChoice = getComputerChoice();
-        let playResult = parseInt(playRound(playerChoice, computerChoice));
-        switch(playResult) {
-            case 1:
-                playerScore++;
-                break;
-            case 0:
-                computerScore++;
-                break;
-            default:
-                i--;
-        }
-    }
-    if (playerScore > computerScore) 
-        console.log(`Player Wins! ${playerScore} - ${computerScore}`);
-    else 
-        console.log(`Computer Wins! ${playerScore} - ${computerScore}`);
+// function game() {
+//     let playerScore = 0;
+//     let computerScore = 0;
+//     for (let i = 0; i < 5; i++) {
+//         const computerChoice = getComputerChoice();
+//         let playResult = parseInt(playRound(playerChoice, computerChoice));
+//         switch(playResult) {
+//             case 1:
+//                 playerScore++;
+//                 break;
+//             case 0:
+//                 computerScore++;
+//                 break;
+//             default:
+//                 i--;
+//         }
+//     }
+//     if (playerScore > computerScore) 
+//         console.log(`Player Wins! ${playerScore} - ${computerScore}`);
+//     else 
+//         console.log(`Computer Wins! ${playerScore} - ${computerScore}`);
+// }
+
+//Setting scores as global variables since it's just simpler.
+let playerScore = 0, computerScore = 0;
+
+function updateScore() {
+    const score = document.querySelector('.score');
+    score.textContent = `${computerScore} - ${playerScore}`;
 }
 
-
-
+//This processes the click of a button, it will be used to also manage the game score.
 function makePlay(e) {
+    let playOutcome;
     switch(e.target.className) {
         case 'rock':
-            playRound('Rock', getComputerChoice());
+            playOutcome = playRound('Rock', getComputerChoice());
             break;
         case 'paper':
-            playRound('Paper', getComputerChoice());
+            playOutcome = playRound('Paper', getComputerChoice());
             break;
         case 'scissors':
-            playRound('Scissors', getComputerChoice());
+            playOutcome = playRound('Scissors', getComputerChoice());
             break;
         default:
-            return
+            return;
+    }
+    switch(playOutcome) {
+        case 1:
+            playerScore++;
+            break;
+        case 0:
+            computerScore++;
+            break;
+        default:
+            break;
+    }
+    updateScore();
+    if (computerScore === 5 || playerScore === 5) {
+        buttons.forEach(button => button.removeEventListener('click', makePlay));
     }
 }
 
